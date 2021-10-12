@@ -111,13 +111,9 @@ describe("genres", () => {
     });
   });
   describe("PUT /", () => {
-    input = { name: "genre 1" };
-    let id = "";
+    let input;
+    let id;
     let genre;
-
-    const exec = async () => {
-      return await request(server).put(`/api/genres/${id}`).send(input);
-    };
 
     beforeEach(async () => {
       input = { name: "genre 1" };
@@ -125,6 +121,10 @@ describe("genres", () => {
       genre = await genre.save();
       id = genre._id;
     });
+
+    const exec = async () => {
+      return await request(server).put(`/api/genres/${id}`).send(input);
+    };
 
     // should return 404 if the id is invalid
     it("should return 404 if the id is invalid", async () => {

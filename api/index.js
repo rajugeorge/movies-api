@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const genres = require("./routes/genres");
+const users = require("./routes/users");
 
 app.use(cors());
 app.use(express.json());
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/genres", genres);
+app.use("/api/users", users);
 
 const server = app.listen(config.get("port"), async () => {
   console.log("server started");
