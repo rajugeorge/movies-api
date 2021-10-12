@@ -1,4 +1,5 @@
 {
   "port": 4000,
-  "db": "movies_test"
+  "db": "movies_test",
+  "jwtPrivateKey": "passwordTest"
 }
