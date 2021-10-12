@@ -1,6 +1,7 @@
 const request = require("supertest");
 const { Genre } = require("../models/Genre");
 const mongoose = require("mongoose");
+const { User } = require("../models/User");
 let server;
 
 describe("genres", () => {
@@ -31,9 +32,6 @@ describe("genres", () => {
     });
   });
   describe("GET /:id", () => {
-    // should return 401 for unauthorized
-    it.todo("should return 401 if not authorized ");
-
     // should return 404 for id
     it("should return 404 if invalid id is passed", async () => {
       const res = await request(server).get("/api/genres/12345");
@@ -62,13 +60,25 @@ describe("genres", () => {
   });
   describe("POST /", () => {
     let post = {};
+    let token;
 
     const exec = async () => {
-      return await request(server).post("/api/genres").send(post);
+      return await request(server)
+        .post("/api/genres")
+        .set("x-auth-token", token)
+        .send(post);
     };
 
     beforeEach(() => {
+      token = new User().generateAuthToken();
       post = {};
+    });
+
+    // should return 401 for unauthorized
+    it("should return 401 if not authorized ", async () => {
+      token = "";
+      const res = await exec();
+      expect(res.status).toBe(401);
     });
 
     it("should return 400, if the input is not valid", async () => {

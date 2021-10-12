@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
     return res.status(400).send(error.message);
   }
 
-  let user = await User.findOne({ email: value.email });
+  let user = await User.findOne({ email: value.email }).exec();
   if (user) return res.status(400).send("User already registered.");
 
   user = new User(value);

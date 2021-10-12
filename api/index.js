@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const genres = require("./routes/genres");
 const users = require("./routes/users");
+const auth = require("./routes/auth");
 
 app.use(cors());
 app.use(express.json());
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/genres", genres);
 app.use("/api/users", users);
+app.use("/api/auth", auth);
 
 const server = app.listen(config.get("port"), async () => {
   console.log("server started");
