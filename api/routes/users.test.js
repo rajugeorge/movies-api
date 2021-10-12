@@ -19,7 +19,7 @@ describe("Users", () => {
 
     beforeEach(() => {
       post = {
-        name: "Mario",
+        name: "Mario Antonio",
         email: "mario@nintendo.com",
         password: "12344567",
       };
