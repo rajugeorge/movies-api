@@ -23,7 +23,7 @@ const server = app.listen(config.get("port"), async () => {
   console.log("server started");
   try {
     console.log(config.get("db"));
-    await mongoose.connect(`mongodb://localhost:27017/${config.get("db")}`);
+    await mongoose.connect(`mongodb://db:27017/${config.get("db")}`);
   } catch (error) {
     console.log("error", error);
   }
