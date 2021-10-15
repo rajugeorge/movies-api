@@ -1,4 +1,6 @@
+const asyncErrors = require("../middleware/Error");
 const express = require("express");
+require("express-async-errors");
 const Auth = require("../middleware/Auth");
 const ValidateId = require("../middleware/ValidateId");
 const { Genre, validate } = require("../models/Genre");

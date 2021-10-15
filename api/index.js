@@ -1,3 +1,4 @@
+const errors = require("./middleware/AsyncError");
 const express = require("express");
 const app = express();
 const config = require("config");
@@ -18,6 +19,8 @@ app.get("/", (req, res) => {
 app.use("/api/genres", genres);
 app.use("/api/users", users);
 app.use("/api/auth", auth);
+
+app.use(errors);
 
 const server = app.listen(config.get("port"), async () => {
   console.log("server started");
