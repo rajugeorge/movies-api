@@ -1,13 +1,20 @@
-const errors = require("./middleware/AsyncError");
 const express = require("express");
+const errors = require("./middleware/AsyncError");
 const app = express();
 const config = require("config");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const { createLogger, transports } = require("winston");
 
 const genres = require("./routes/genres");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
+
+const logger = createLogger({
+  transports: [new transports.File({ filename: "combined.log" })],
+  exceptionHandlers: [new transports.File({ filename: "exceptions.log" })],
+  rejectionHandlers: [new transports.File({ filename: "rejections.log" })],
+});
 
 app.use(cors());
 app.use(express.json());
