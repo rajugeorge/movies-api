@@ -1,5 +1,7 @@
 FROM node:alpine
 
+RUN apk add --no-cache make gcc g++ python3 py3-pip
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
