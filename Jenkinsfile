@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('build') {
             steps {
-                echo 'Hello World'
+                docker build -t 64.227.176.229:8083/movies-api:1.2 .
             }
         }
     }
