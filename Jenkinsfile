@@ -7,18 +7,24 @@ pipeline {
 
         stage('init') {
             steps {
-                gv = load 'groovy/script.groovy'
+                script{
+                    gv = load 'groovy/script.groovy'
+                }
             }
         }
 
         stage('build') {
             steps {
-                gv.buildApp()
+                script {
+                    gv.buildApp()
+                }
             }
         }
         stage('test') {
             steps {
-                gv.buildApp()
+               script {
+                    gv.buildApp()
+               }
             }
         }
         stage('deploy') {
