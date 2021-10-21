@@ -11,4 +11,8 @@ def testApp(){
     echo 'testing the application....'
 }
 
+def deployApp(){
+    echo 'testing the application....'
+}
+
 return this
