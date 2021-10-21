@@ -1,3 +1,5 @@
+@Library('jenkins-shared-test')
+
 def gv
 
 pipeline {
@@ -8,6 +10,7 @@ pipeline {
         stage('init') {
             steps {
                 script{
+                    welcomeJob('Raju')
                     gv = load 'groovy/script.groovy'
                 }
             }
