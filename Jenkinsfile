@@ -12,7 +12,6 @@ pipeline {
         stage('init') {
             steps {
                 script{
-                    welcomeJob('Raju')
                     gv = load 'groovy/script.groovy'
                 }
             }
@@ -26,7 +25,7 @@ pipeline {
             }
             steps {
                 script {
-                    gv.buildApp()
+                    buildImage()
                 }
             }
         }
