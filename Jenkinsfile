@@ -30,7 +30,6 @@ pipeline {
         stage('deploy') {
             steps {
                 echo "deploy"
-                echo "deploying with ${SERVER_CREDENTIALS}"
             }
         }
     }
