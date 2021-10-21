@@ -12,7 +12,7 @@ def testApp(){
 }
 
 def deployApp(){
-    echo 'testing the application....'
+    echo 'deploying the application....'
 }
 
 return this
