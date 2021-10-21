@@ -1,6 +1,7 @@
+def gv
+
 pipeline {
     agent any
-    def gv
 
     stages {
 
