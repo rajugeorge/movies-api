@@ -1,6 +1,8 @@
 #!/usr/bin/env groovy
 
-@Library('jenkins-shared-test')
+library identifier: 'jenkins-shared-library@master', retriever: modernSCM(
+    [$class: 'GitSCMSource',
+    remote: 'https://github.com/rajugeorge/jenkins-shared-test.git'])
 
 def gv
 
