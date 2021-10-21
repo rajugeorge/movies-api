@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                 script {
-                    buildImage()
+                    buildImage('64.227.176.229:8083/movies-app:1.4')
                 }
             }
         }
