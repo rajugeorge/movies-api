@@ -5,6 +5,7 @@ library identifier: 'jenkins-shared-library@master', retriever: modernSCM(
     remote: 'https://github.com/rajugeorge/jenkins-shared-test.git'])
 
 def gv
+def IMAGE_VERSION
 
 pipeline {
     agent any
@@ -15,6 +16,7 @@ pipeline {
             steps {
                 script{
                     gv = load 'groovy/script.groovy'
+                    IMAGE_VERSION = sh 'cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'
                 }
             }
         }
@@ -27,6 +29,7 @@ pipeline {
             }
             steps {
                 script {
+                    echo "$IMAGE_VERSION"
                     buildImage('64.227.176.229:8083/movies-app:1.5')
                     dockerLogin()
                     dockerPush('64.227.176.229:8083/movies-app:1.5')
