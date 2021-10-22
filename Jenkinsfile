@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script{
                     gv = load 'groovy/script.groovy'
-                    IMAGE_VERSION = sh 'cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'
+                    IMAGE_VERSION = sh "cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'"
                 }
             }
         }
