@@ -54,6 +54,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        script {
+                            env.encodedPass=URLEncoder.encode(GIT_PASSWORD, "UTF-8")
+                        }
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
                         
@@ -61,7 +64,7 @@ pipeline {
                         sh 'git branch'
                         sh 'git config --list'
 
-                        sh 'git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/rajugeorge/movies-api.git'
+                        sh 'git remote set-url origin https://$GIT_USERNAME:$encodedPass@github.com/rajugeorge/movies-api.git'
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:main'
