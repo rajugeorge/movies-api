@@ -64,7 +64,7 @@ pipeline {
                         sh 'git branch'
                         sh 'git config --list'
 
-                        sh 'git remote set-url origin https://$GIT_USERNAME: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@github.com/rajugeorge/movies-api.git'
+                        sh 'git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/rajugeorge/movies-api.git'
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:main'
