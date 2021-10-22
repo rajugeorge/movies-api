@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script{
                     gv = load 'groovy/script.groovy'
-                    sh 'npm version patch'
+                    sh 'npm version patch -no-git-tag-version --force'
                     def version = sh (script: "cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'", returnStdout: true).trim()
                     env.IMAGE_VERSION = "$version-$BUILD_NUMBER"
                 }
