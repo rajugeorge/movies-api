@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script{
                     gv = load 'groovy/script.groovy'
-                    env.IMAGE_VERSION = "my app is cool"
+                    env.IMAGE_VERSION = sh (script: 'cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'', returnStdout: true).trim()
                 }
             }
         }
