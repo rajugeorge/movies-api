@@ -28,9 +28,9 @@ pipeline {
             }
             steps {
                 script {
-                    buildImage("64.227.176.229:8083/movies-app:$IMAGE_VERSION")
+                    buildImage("64.227.176.229:8083/movies-app:${IMAGE_VERSION}")
                     dockerLogin()
-                    dockerPush("64.227.176.229:8083/movies-app:$IMAGE_VERSION")
+                    dockerPush("64.227.176.229:8083/movies-app:${IMAGE_VERSION}")
                 }
             }
         }
