@@ -8,7 +8,7 @@ def buildApp(){
 }
 
 def testApp(){
-    echo "testing the application.... $BRANCH_NAME"
+    echo "testing the application with hooks.... $BRANCH_NAME"
 }
 
 def deployApp(){
