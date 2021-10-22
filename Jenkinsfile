@@ -15,7 +15,9 @@ pipeline {
             steps {
                 script{
                     gv = load 'groovy/script.groovy'
-                    env.IMAGE_VERSION = sh (script: "cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'", returnStdout: true).trim()
+                    sh 'npm version patch'
+                    def version = sh (script: "cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'", returnStdout: true).trim()
+                    env.IMAGE_VERSION = "$version-$BUILD_NUMBER"
                 }
             }
         }
