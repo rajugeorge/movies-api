@@ -5,7 +5,6 @@ library identifier: 'jenkins-shared-library@master', retriever: modernSCM(
     remote: 'https://github.com/rajugeorge/jenkins-shared-test.git'])
 
 def gv
-def IMAGE_VERSION
 
 pipeline {
     agent any
@@ -16,7 +15,7 @@ pipeline {
             steps {
                 script{
                     gv = load 'groovy/script.groovy'
-                    IMAGE_VERSION = sh "cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'"
+                    env.IMAGE_VERSION = sh "cat ./package.json | grep -m 1 version | sed 's/[^0-9.]//g'"
                 }
             }
         }
