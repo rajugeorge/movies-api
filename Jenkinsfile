@@ -47,10 +47,11 @@ pipeline {
             steps {
                 script {
                     echo "deploying to ec2..............."
-                    def dockerComposeCmd = "docker-compose -f docker-compose-deploy.yaml up --detach"
+                    def shellCmd = "bash ./server-cmds.sh"
                    sshagent(['ec2-server-key']) {
+                       sh 'scp server-cmds.sh ec2-user@3.110.49.80:/home/ec2-user'
                        sh 'scp docker-compose-deploy.yaml ec2-user@3.110.49.80:/home/ec2-user'
-                       sh "ssh -o StrictHostKeyChecking=no ec2-user@3.110.49.80 ${dockerComposeCmd}"
+                       sh "ssh -o StrictHostKeyChecking=no ec2-user@3.110.49.80 ${shellCmd}"
                    }
                }
             }
