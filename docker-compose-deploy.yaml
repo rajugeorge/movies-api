@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+  api:
+    image: 64.227.176.229:8083/movies-app:2.0.0
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+volumes:
+  mongo-data:
