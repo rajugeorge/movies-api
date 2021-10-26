@@ -7,7 +7,7 @@ services:
     volumes:
       - mongo-data:/data/db
   api:
-    image: 64.227.176.229:8083/movies-app:2.0.0
+    image: "64.227.176.229:8083/movies-app:${IMAGE}"
     ports:
       - 3000:3000
     depends_on:
