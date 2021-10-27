@@ -1,0 +1,5 @@
+{
+  "db_user": "USER_NAME",
+  "db_pass": "USER_PWD",
+  "db_url": "DB_URL"
+}

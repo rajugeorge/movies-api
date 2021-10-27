@@ -32,8 +32,15 @@ app.use(errors);
 const server = app.listen(config.get("port"), async () => {
   console.log("server started");
   try {
-    console.log(config.get("db"));
-    await mongoose.connect(`mongodb://db:27017/${config.get("db")}`);
+    const dbUrl = `mongodb://${config.get("db_user")}:${config.get(
+      "db_pass"
+    )}@${config.get("db_url")}/${config.get("db")}?authSource=admin`;
+    console.log(dbUrl);
+    const options = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    };
+    await mongoose.connect(dbUrl, options);
   } catch (error) {
     console.log("error", error);
   }

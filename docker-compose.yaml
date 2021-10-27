@@ -6,6 +6,9 @@ services:
       - 27017:27017
     volumes:
       - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
   api:
     build:
       context: .
@@ -15,6 +18,10 @@ services:
     volumes:
       - /usr/src/app/node_modules
       - .:/usr/src/app
+    environment:
+      USER_NAME: admin
+      USER_PWD: password
+      DB_URL: host.docker.internal
     depends_on:
       - db
   # api-tests:
