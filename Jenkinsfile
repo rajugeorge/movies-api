@@ -43,19 +43,19 @@ pipeline {
                }
             }
         }
-        stage('deploy') {
-            steps {
-                script {
-                    echo "deploying to ec2..............."
-                    def shellCmd = "bash ./server-cmds.sh ${IMAGE_VERSION}"
-                   sshagent(['ec2-server-key']) {
-                       sh 'scp server-cmds.sh ec2-user@3.110.49.80:/home/ec2-user'
-                       sh 'scp docker-compose-deploy.yaml ec2-user@3.110.49.80:/home/ec2-user'
-                       sh "ssh -o StrictHostKeyChecking=no ec2-user@3.110.49.80 ${shellCmd}"
-                   }
-               }
-            }
-        }
+        // stage('deploy') {
+        //     steps {
+        //         script {
+        //             echo "deploying to ec2..............."
+        //             def shellCmd = "bash ./server-cmds.sh ${IMAGE_VERSION}"
+        //            sshagent(['ec2-server-key']) {
+        //                sh 'scp server-cmds.sh ec2-user@3.110.49.80:/home/ec2-user'
+        //                sh 'scp docker-compose-deploy.yaml ec2-user@3.110.49.80:/home/ec2-user'
+        //                sh "ssh -o StrictHostKeyChecking=no ec2-user@3.110.49.80 ${shellCmd}"
+        //            }
+        //        }
+        //     }
+        // }
         stage('kube test') {
             environment {
                 AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
